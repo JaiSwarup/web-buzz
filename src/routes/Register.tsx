@@ -6,14 +6,14 @@ import useAuthStore from "../stores/authStore";
 const Step1 = () => {
     const { register } = useFormContext();
     return (
-        <div>
-            <label>
+        <div className="w-full">
+            <label className="bg-gray-700 text-white w-full">
                 First Name:
-                <input {...register("firstName")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("firstName")} />
             </label>
-            <label>
+            <label className="bg-gray-700 text-white w-full">
                 Last Name:
-                <input {...register("lastName")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("lastName")} />
             </label>
         </div>
     );
@@ -21,18 +21,18 @@ const Step1 = () => {
 const Step2 = () => {
     const { register } = useFormContext();
     return (
-        <div>
-            <label>
+        <div className="w-full">
+            <label className="bg-gray-700 text-white w-full">
                 Username:
-                <input {...register("username")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("username")} />
             </label>
-            <label>
+            <label className="bg-gray-700 text-white w-full">
                 Email:
-                <input {...register("email")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("email")} />
             </label>
-            <label>
+            <label className="bg-gray-700 text-white w-full">
                 Password:
-                <input type="password" {...register("password")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" type="password" {...register("password")} />
             </label>
         </div>
     );
@@ -40,14 +40,14 @@ const Step2 = () => {
 const Step3 = () => {
     const { register } = useFormContext();
     return (
-        <div>
-            <label>
+        <div className="w-full">
+            <label className="bg-gray-700 text-white w-full">
                 Address:
-                <input {...register("address")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("address")} />
             </label>
-            <label>
+            <label className="bg-gray-700 text-white w-full">
                 City:
-                <input {...register("city")} />
+                <input className="placeholder:text-gray-600 h-8 w-full border-2 rounded-md" {...register("city")} />
             </label>
         </div>
     );
@@ -69,20 +69,25 @@ const Register = () => {
     };
     return (
         <>
-        <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-                {step === 1 && <Step1 />}
-                {step === 2 && <Step2 />}
-                {step === 3 && <Step3 />}
-                <div>
-                    {step > 1 && <button type="button" onClick={prevStep}>Back</button>}
-                    {step < 3 && <button type="button" onClick={nextStep}>Next</button>}
-                    {step === 3 && <button type="submit">Submit</button>}
-                </div>
-            </form>
-        </FormProvider>
-        
-        <div className="mt-10">Already have an account?<button className="text-blue-600 underline" onClick={()=>handleLogin()}>Login.</button></div>
+        <div className="flex flex-col items-center mt-10">
+            <div className="shadow-xl w-1/4 mt-10">
+
+            <FormProvider {...methods}>
+                <form className="flex flex-col gap-6 p-4 border w-full" onSubmit={methods.handleSubmit(onSubmit)}>
+                    {step === 1 && <Step1 />}
+                    {step === 2 && <Step2 />}
+                    {step === 3 && <Step3 />}
+                    <div>
+                        {step > 1 && <button type="button" className="mx-2 bg-gray-600 py-2 px-3 rounded-lg text-white" onClick={prevStep}>Back</button>}
+                        {step < 3 && <button type="button" className="mx-2 bg-gray-600 py-2 px-3 rounded-lg text-white" onClick={nextStep}>Next</button>}
+                        {step === 3 && <button type="submit" className="mx-2 bg-gray-600 py-2 px-3 rounded-lg text-white">Submit</button>}
+                    </div>
+                </form>
+            </FormProvider>
+            </div>
+
+            <div className="mt-10">Already have an account?<button className="text-blue-600 underline" onClick={()=>handleLogin()}>Login.</button></div>
+        </div>
         </>
     );
 };
